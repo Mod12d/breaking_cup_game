@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breaking Cup Game</title>
+    <script type="module">
+        import init, { start_game } from './pkg/breaking_cup_game.js';
+
+        async function run() {
+            await init();
+            start_game();
+        }
+
+        run();
+    </script>
+</head>
+<body>
+    <h1>Breaking Cup Game</h1>
+    <!-- ゲームのUI要素をここに追加 -->
+</body>
+</html>
