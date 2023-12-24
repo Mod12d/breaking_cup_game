@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breaking Cup Game</title>
+    <script type="module" src="bootstrap.js"></script>
+    <style>
+        /* Add your CSS styles here */
+        #game-status {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Breaking Cup Game</h1>
+    <button id="start-button">Start Game</button>
+    <div id="game-status"></div>
+
+    <script type="module">
+        import init, { start_game } from './path/to/pkg/breaking_cup_game.js';
+
+        async function run() {
+            await init();
+            document.getElementById("start-button").addEventListener("click", function() {
+                start_game();
+                document.getElementById("game-status").innerText = "Game Started!";
+            });
+        }
+
+        run();
+    </script>
+</body>
+</html>
