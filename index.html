@@ -28,19 +28,34 @@
 </html>
 
 <script>
-    const block = document.getElementById('block');
-    let positionY = 0;
-    const speed = 2; // Speed of the block
+import init, { Block } from '../pkg/breaking_cup_game_bg.js';
 
-    function moveBlock() {
-        positionY += speed;
-        block.style.top = positionY + 'px';
+async function run() {
+    await init();
 
-        if (positionY < document.getElementById('game-area').clientHeight) {
-            requestAnimationFrame(moveBlock);
-        }
+    const block = Block.new();
+    const blockElement = document.getElementById('block');
+let blockY = 0; // Initial vertical position
+
+function moveBlock() {
+    blockY += 2; // Move the block down by 2 pixels
+    blockElement.style.top = `${blockY}px`; // Apply the movement
+
+    if (blockY < document.getElementById('game-area').clientHeight - blockElement.clientHeight) {
+        requestAnimationFrame(moveBlock); // Continue the animation
+    } else {
+        blockY = 0; // Reset the block position if it reaches the bottom
     }
+}
 
-    // Start moving the block
-    moveBlock();
+blockElement.addEventListener('click', () => {
+    blockElement.style.visibility = 'hidden'; // 'Destroy' the block by hiding it
+    blockY = 0; // Reset the block position
+});
+
+moveBlock(); // Start moving the block
+}
+
+run();
+
 </script>
